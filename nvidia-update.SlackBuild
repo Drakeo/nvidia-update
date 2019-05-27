@@ -22,7 +22,7 @@
 
 CWD=$(pwd)
 PKGNAM=nvidia-update
-VERSION=${VERSION:-0.1}
+VERSION=${VERSION:-0.2}
 ARCH=noarch
 BUILD=${BUILD:-1}
 
@@ -38,13 +38,29 @@ TMP=${TMP:-/tmp}
 PKG=$TMP/package-${PKGNAM}
 
 rm -rf $PKG
-
 mkdir -p $PKG/usr/sbin
+
 
 
 cp -a $CWD/nvidia-update $PKG/usr/sbin
 chown root:root $PKG/usr/sbin/nvidia-update
 chmod 755 $PKG/usr/sbin/nvidia-update
+# try to work with  pkgtool
+mkdir -p $PKG/etc/modprobe.d
+cp -a $CWD/nvidia-disable-nouveau.conf $PKG/etc/modprobe.d
+# need to just add a line to rc.local 
+mkdir -p $PKG/etc/rc.d 
+#keep all of the users previous entries
+cat /etc/rc.d/rc.local > $PKG/etc/rc.d/rc.local.new
+# keep from adding double entry for reinstall or upgrades
+FNVD=$(cat $PKG/etc/rc.d/rc.local.new | grep nvidia)
+if [ "$FNVD" = "exec /usr/sbin/nvidia-update" ]; then
+sed -i 's|exec /usr/sbin/nvidia-update||g' $PKG/etc/rc.d/rc.local.new
+echo exec /usr/sbin/nvidia-update >> $PKG/etc/rc.d/rc.local.new
+else
+echo exec /usr/sbin/nvidia-update >> $PKG/etc/rc.d/rc.local.new
+fi
+
 
 mkdir -p $PKG/install
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
