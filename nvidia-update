@@ -35,7 +35,7 @@ cd /root
 filename=latest.txt
 
 #use till Nvidia fixes repo
-https://github.com/Drakeo/nvidia-update/raw/master/latest.txt
+wget https://github.com/Drakeo/nvidia-update/raw/master/latest.txt
 #wget  https://download.nvidia.com/XFree86/$SLKCA/$filename #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
