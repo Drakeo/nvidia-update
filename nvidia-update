@@ -34,7 +34,9 @@ cd /root
 # This is nividia's latest stable
 filename=latest.txt
 
-wget  https://download.nvidia.com/XFree86/$SLKCA/$filename
+#use till Nvidia fixes repo
+https://github.com/Drakeo/nvidia-update/raw/master/latest.txt
+#wget  https://download.nvidia.com/XFree86/$SLKCA/$filename #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
 GETNV=$(sed "s/\(.\{7\}\).\{0\}//" "${filename}")
