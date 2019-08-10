@@ -28,8 +28,15 @@ RKERV=$(uname -r)
 if [ -f /lib/modules/$RKERV/kernel/drivers/video/nvidia.ko ]; then
 	echo NVida latest installed 
 	exit
-else
+fi
 cd /root
+
+#check for multilib
+if [ -f  /etc/profile.d/32dev.sh ]; then
+NVC=".run"
+else
+NVC="-no-compat32.run"
+fi
 
 # This is nividia's latest stable
 filename=latest.txt
@@ -39,23 +46,23 @@ wget https://github.com/Drakeo/nvidia-update/raw/master/latest.txt
 #wget  https://download.nvidia.com/XFree86/$SLKCA/$filename #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
-GETNV=$(sed "s/\(.\{7\}\).\{0\}//" "${filename}")
-RUNNV=$(sed "s/\(.\{14\}\).\{0\}//" "${filename}")
+GETNV=$(cat $filename |head -c -5 |tail -c -33)
+RUNNV=$(cat $filename |tail -c -31|head -c -5)
 # 3 digit ending for nvidia 
-GETNV2=$(sed "s/\(.\{8\}\).\{0\}//" "${filename}")
-RUNNV2=$(sed "s/\(.\{16\}\).\{0\}//" "${filename}")
+GETNV2=$(cat $filename |head -c -5 |tail -c -36)
+RUNNV2=$(cat $filename |tail -c -32|head -c -5)
 
 
 #wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV
-URL=https://download.nvidia.com/XFree86/$SLKCA/$GETNV
+URL=https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
 if wget --spider $URL 2>/dev/null; then
-wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV
-BRNV=$RUNNV
+wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
+BRNV=$RUNNV$NVC
 else
-wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV2
-BRNV=$RUNNV2
+wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
+BRNV=$RUNNV2$NVC
   fi
-fi
+
 echo down loading $BRNV
 #remove for rerun
 rm  $filename
