@@ -56,10 +56,10 @@ RUNNV2=$(cat $filename |tail -c -32|head -c -5)
 #wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV
 URL=https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
 if curl --output /dev/null --silent --fail -r 0-0 "$URL"; then
-curl -O  https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
+curl -C - -O https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
 BRNV=$RUNNV$NVC
 else
-curl -O  https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
+curl -C - -O https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
 BRNV=$RUNNV2$NVC
   fi
 
