@@ -42,8 +42,8 @@ fi
 filename=latest.txt
 
 #use till Nvidia fixes repo
-curl -O https://github.com/Drakeo/nvidia-update/raw/master/latest.txt 
-#curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
+#curl -O https://github.com/Drakeo/nvidia-update/raw/master/latest.txt 
+curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
 GETNV=$(cat $filename |head -c -5 |tail -c -33)
@@ -55,11 +55,11 @@ RUNNV2=$(cat $filename |tail -c -32|head -c -5)
 
 #wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV
 URL=https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
-if wget --spider $URL 2>/dev/null; then
-wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
+if curl --output /dev/null --silent --fail -r 0-0 "$URL"; then
+curl -O  https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
 BRNV=$RUNNV$NVC
 else
-wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
+curl -O  https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
 BRNV=$RUNNV2$NVC
   fi
 
