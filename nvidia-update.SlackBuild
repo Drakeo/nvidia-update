@@ -22,7 +22,7 @@
 
 CWD=$(pwd)
 PKGNAM=nvidia-update
-VERSION=${VERSION:-0.6}
+VERSION=${VERSION:-0.7}
 ARCH=noarch
 BUILD=${BUILD:-1}
 
