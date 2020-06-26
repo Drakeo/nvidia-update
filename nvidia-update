@@ -51,7 +51,7 @@ curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after N
 GETNV=$(cat $filename |head -c -5 |tail -c -33)
 RUNNV=$(cat $filename |tail -c -31|head -c -5)
 # 3 digit ending for nvidia 
-GETNV2=$(cat $filename |head -c -5 |tail -c -36)
+GETNV2=$(cat $filename |head -c -5 |tail -c -35)
 RUNNV2=$(cat $filename |tail -c -32|head -c -5)
 
 
