@@ -70,5 +70,11 @@ echo down loading $BRNV
 rm  $filename
 
 #install NVIDIA kernel version for kernel upgrades
+if [ -f /usr/bin/nvidia-settings ]; then
+ echo your choice to save settings
+ sleep 3 
+ sh $BRNV -a  -k $RKERV
+else
+ echo  This is a new install jsut restart your Machine
 sh $BRNV -a -q -X -k $RKERV
-
+fi
