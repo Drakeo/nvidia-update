@@ -1,0 +1,6 @@
+#!/bin/sh
+# executable is in /usr/sbin/nvidia-update
+# make an /etc/rc.d/rc.nvidia-update script and put those
+# commands in there.
+
+/usr/sbin/nvidia-update

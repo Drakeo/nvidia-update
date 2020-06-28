@@ -22,7 +22,7 @@
 
 CWD=$(pwd)
 PKGNAM=nvidia-update
-VERSION=${VERSION:-0.7}
+VERSION=${VERSION:-0.8}
 ARCH=noarch
 BUILD=${BUILD:-1}
 
@@ -48,6 +48,14 @@ chmod 755 $PKG/usr/sbin/nvidia-update
 # try to work with  pkgtool
 mkdir -p $PKG/etc/modprobe.d
 cp -a $CWD/nvidia-disable-nouveau.conf $PKG/etc/modprobe.d
+mkdir -p $PKG/etc/rc.d
+cat /etc/rc.d/rc.M > $PKG/etc/rc.d/rc.M.new
+cp -a $CWD/rc.nvidia_update $PKG/etc/rc.d/rc.nvidia_update.new
+echo "# Start-nvidia setup procedure.
+if [ -x /etc/rc.d/rc.nvidia_update ]; then
+  /etc/rc.d/rc.nvidia_update
+fi" >> $PKG/etc/rc.d/rc.M.new
+ 
 mkdir -p $PKG/install
 cat $CWD/doinst.sh > $PKG/install/doinst.sh
 cat $CWD/slack-desc > $PKG/install/slack-desc
