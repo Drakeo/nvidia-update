@@ -48,11 +48,11 @@ filename=latest.txt
 curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
-GETNV=$(cat $filename |head -c -5 |tail -c -33)
-RUNNV=$(cat $filename |tail -c -31|head -c -5)
+GETNV=$(cat $filename |head -c -5 |tail -c -39)
+RUNNV=$(cat $filename |tail -c -34|head -c -5)
 # 3 digit ending for nvidia 
-GETNV2=$(cat $filename |head -c -5 |tail -c -35)
-RUNNV2=$(cat $filename |tail -c -32|head -c -5)
+GETNV2=$(cat $filename |head -c -5 |tail -c -41)
+RUNNV2=$(cat $filename |tail -c -35|head -c -5)
 
 
 #wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV
