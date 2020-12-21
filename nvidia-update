@@ -44,8 +44,8 @@ fi
 filename=latest.txt
 
 #use till Nvidia fixes repo
-#curl -O https://github.com/Drakeo/nvidia-update/raw/master/latest.txt 
-curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
+curl -O https://github.com/Drakeo/nvidia-update/raw/master/latest.txt 
+#curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
 # 2 digit ending for nvidia 
