@@ -48,26 +48,73 @@ filename=latest.txt
 curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
-GETNV=$(cat $filename |head -c -5 |tail -c -32)
-RUNNV=$(cat $filename |tail -c -30|head -c -5)
+GETNV1=$(cat $filename |head -c -5 |tail -c -33)
+RUNNV1=$(cat $filename |tail -c -31|head -c -5)
 # 3 digit ending for nvidia 
-GETNV2=$(cat $filename |head -c -5 |tail -c -33)
-RUNNV2=$(cat $filename |tail -c -31|head -c -5)
+GETNV2=$(cat $filename |head -c -5 |tail -c -35)
+RUNNV2=$(cat $filename |tail -c -32|head -c -5)
+# .xx.xx 2x2 digit
+GETNV3=$(cat $filename |head -c -5 |tail -c -39)
+RUNNV3=$(cat $filename |tail -c -34|head -c -5)
+# .xxx.xx 3X2 digit
+GETNV4=$(cat $filename |head -c -5 |tail -c -41)
+RUNNV4=$(cat $filename |tail -c -35|head -c -5)
+# .xxx.xxx 3x3 digit
+GETNV5=$(cat $filename |head -c -5 |tail -c -43)
+RUNNV5=$(cat $filename |tail -c -36|head -c -5)
+
 
 
 #wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV
-URL=https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
-if curl --output /dev/null --silent --fail -r 0-0 "$URL"; then
-curl -C - -O https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
-BRNV=$RUNNV$NVC
-else
-curl -C - -O https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
-BRNV=$RUNNV2$NVC 
-  fi
+URL1=https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
+URL2=https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
+URL3=https://download.nvidia.com/XFree86/$SLKCA/$GETNV3$NVC
+URL4=https://download.nvidia.com/XFree86/$SLKCA/$GETN4V$NVC
+URL5=https://download.nvidia.com/XFree86/$SLKCA/$GETN5V$NVC
 
-echo down loading $BRNV
+if curl --output /dev/null --silent --fail -r 0-0 "$URL1"; then
+ BRNV=$RUNNV1$NVC
+ URNV=$URL1
+ else
+  echo x
+fi
+if curl --output /dev/null --silent --fail -r 0-0 "$URL2"; then
+ BRNV=$RUNNV2$NVC
+ URNV=$URL2
+ else
+  echo xx
+fi
+if curl --output /dev/null --silent --fail -r 0-0 "$URL3"; then
+ BRNV=$RUNNV3$NVC 
+ URNV=$URL3
+ else
+  echo xxx
+fi
+if curl --output /dev/null --silent --fail -r 0-0 "$URL4"; then
+ BRNV=$RUNNV4$NVC
+ URNV=$URL4
+ else
+ echo xxxx
+fi
+if curl --output /dev/null --silent --fail -r 0-0 "$URL4"; then
+ BRNV=$RUNNV5$NVC
+ URNV=$URL5
+ else
+ echo xxxxx
+fi
+ if [ -f $BRNV ]; then
+  echo $BRNV already downloaded
+  echo going to build for your kernel
+ else
+  echo downloding  $BRNV new update
+  echo going to build for your kernel
+ fi 
+sleep 2
 #remove for rerun
 rm  $filename
+curl -C - -O $URNV
+
+
 
 #install NVIDIA kernel version for kernel upgrades
 if [ -f /usr/bin/nvidia-settings ]; then
