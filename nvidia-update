@@ -66,11 +66,11 @@ RUNNV5=$(cat $filename |tail -c -36|head -c -5)
 
 
 #wget -c  https://download.nvidia.com/XFree86/$SLKCA/$GETNV
-URL1=https://download.nvidia.com/XFree86/$SLKCA/$GETNV$NVC
+URL1=https://download.nvidia.com/XFree86/$SLKCA/$GETNV1$NVC
 URL2=https://download.nvidia.com/XFree86/$SLKCA/$GETNV2$NVC
 URL3=https://download.nvidia.com/XFree86/$SLKCA/$GETNV3$NVC
-URL4=https://download.nvidia.com/XFree86/$SLKCA/$GETN4V$NVC
-URL5=https://download.nvidia.com/XFree86/$SLKCA/$GETN5V$NVC
+URL4=https://download.nvidia.com/XFree86/$SLKCA/$GETNV4$NVC
+URL5=https://download.nvidia.com/XFree86/$SLKCA/$GETNV5$NVC
 
 if curl --output /dev/null --silent --fail -r 0-0 "$URL1"; then
  BRNV=$RUNNV1$NVC
