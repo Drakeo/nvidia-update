@@ -24,13 +24,9 @@ else
 fi
 
 
-RKERV=$(sed -n 3p /boot/config | awk '{print($3)}')
+KERNV=$(sed -n 3p /boot/config | awk '{print($3)}')
 
 
-if [ -f /lib/modules/$RKERV/kernel/drivers/video/nvidia.ko ]; then
-	echo NVida latest installed 
-	exit
-fi
 cd /root
 
 #check for multilib
@@ -114,14 +110,21 @@ sleep 2
 rm  $filename
 curl -C - -O $URNV
 
+INSTAL=${INSTAL:-no}
+if [ "$INSTAL" = "yes" ]; then
+sh $BRNV --no-x-check -K -k $KERNV
+fi
 
-
+if [ -f /lib/modules/$KERNV/kernel/drivers/video/nvidia.ko ]; then
+	echo NVida latest installed 
+	exit
+fi
 #install NVIDIA kernel version for kernel upgrades
 if [ -f /usr/bin/nvidia-settings ]; then
  echo your choice to save settings
  sleep 3 
- sh $BRNV -a  -k $RKERV
+ sh $BRNV -a  -k $KERNV
 else
  echo  This is a new install jsut restart your Machine
-sh $BRNV -a -q -X -k $RKERV
+sh $BRNV -a -q -X -k $KERNV
 fi

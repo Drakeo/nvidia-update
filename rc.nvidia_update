@@ -3,4 +3,10 @@
 # make an /etc/rc.d/rc.nvidia-update script and put those
 # commands in there.
 
+RKERV=$(uname -r)
+
+if [ -f /lib/modules/$RKERV/kernel/drivers/video/nvidia.ko ]; then
+echo nvidia installed
+else
 /usr/sbin/nvidia-update
+fi
