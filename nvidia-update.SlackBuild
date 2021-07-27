@@ -24,7 +24,7 @@ CWD=$(pwd)
 PKGNAM=nvidia-update
 VERSION=${VERSION:-1.1}
 ARCH=noarch
-BUILD=${BUILD:-1}
+BUILD=${BUILD:-3}
 
 # If the variable PRINT_PACKAGE_NAME is set, then this script will report what
 # the name of the created package would be, and then exit. This information
