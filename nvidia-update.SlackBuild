@@ -24,7 +24,7 @@ CWD=$(pwd)
 PKGNAM=nvidia-update
 VERSION=${VERSION:-1.1}
 ARCH=noarch
-BUILD=${BUILD:-4}
+BUILD=${BUILD:-5}
 
 # If the variable PRINT_PACKAGE_NAME is set, then this script will report what
 # the name of the created package would be, and then exit. This information
@@ -39,10 +39,12 @@ PKG=$TMP/package-${PKGNAM}
 
 rm -rf $PKG
 mkdir -p $PKG/usr/sbin
+mkdir -p $PKG/etc
 
 
 
 cp -a $CWD/nvidia-update $PKG/usr/sbin
+cp -a $CWD/nvidia.txt $PKG/etc
 chown root:root $PKG/usr/sbin/nvidia-update
 chmod 755 $PKG/usr/sbin/nvidia-update
 # try to work with  pkgtool

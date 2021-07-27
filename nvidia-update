@@ -40,13 +40,17 @@ fi
 filename=latest.txt
 # This is nividia's beta testing
 #filename=beta.txt
-# This is nividia's legacy 
-#filename=legacy.txt
+# This is nividia's legacy
+# set for custom driver 
+#filename=nvidia.txt
 
+if [ "$filename" = "nvidia.txt" ]; then
+cp /etc/$filename /root
+else
 #use till Nvidia fixes repo
  wget  https://github.com/Drakeo/nvidia-update/raw/master/$filename
 #curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
-
+fi
 # 2 digit ending for nvidia 
 GETNV1=$(cat $filename |head -c -5 |tail -c -33)
 RUNNV1=$(cat $filename |tail -c -31|head -c -5)
