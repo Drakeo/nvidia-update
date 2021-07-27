@@ -44,7 +44,7 @@ filename=latest.txt
 #filename=legacy.txt
 
 #use till Nvidia fixes repo
- wget  https://github.com/Drakeo/nvidia-update/raw/master/latest.txt 
+ wget  https://github.com/Drakeo/nvidia-update/raw/master/$filename
 #curl -O  https://download.nvidia.com/XFree86/$SLKCA/$filename  #put back after Nvidia fixes repo
 
 # 2 digit ending for nvidia 
@@ -120,7 +120,7 @@ sh $BRNV --no-x-check -K -k $KERNV
 fi
 
 if [ -f /lib/modules/$KERNV/kernel/drivers/video/nvidia.ko ]; then
-	echo NVida latest installed 
+	echo $BRNV driver already installed 
 	exit
 fi
 #install NVIDIA kernel version for kernel upgrades
