@@ -41,7 +41,7 @@ filename=latest.txt
 # This is nividia's beta testing
 #filename=beta.txt
 # This is nividia's legacy
-# set for custom driver 
+# set for custom driver edit /etc/nvidia.txt
 #filename=nvidia.txt
 
 if [ "$filename" = "nvidia.txt" ]; then
