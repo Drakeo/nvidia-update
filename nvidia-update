@@ -38,6 +38,10 @@ fi
 
 # This is nividia's latest stable
 filename=latest.txt
+# This is nividia's beta testing
+#filename=beta.txt
+# This is nividia's legacy 
+#filename=legacy.txt
 
 #use till Nvidia fixes repo
  wget  https://github.com/Drakeo/nvidia-update/raw/master/latest.txt 
