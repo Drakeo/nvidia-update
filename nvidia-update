@@ -45,7 +45,7 @@ filename=latest.txt
 #filename=nvidia.txt
 
 if [ "$filename" = "nvidia.txt" ]; then
-cp /etc/$filename /root
+cat /etc/$filename > ~/$filename
 else
 #use till Nvidia fixes repo
  wget  https://github.com/Drakeo/nvidia-update/raw/master/$filename
