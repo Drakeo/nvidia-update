@@ -100,7 +100,7 @@ if curl --output /dev/null --silent --fail -r 0-0 "$URL4"; then
  else
  echo xxxx
 fi
-if curl --output /dev/null --silent --fail -r 0-0 "$URL4"; then
+if curl --output /dev/null --silent --fail -r 0-0 "$URL5"; then
  BRNV=$RUNNV5$NVC
  URNV=$URL5
  else
